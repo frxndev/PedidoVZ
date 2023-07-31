@@ -5,6 +5,7 @@ export 'repositories/usuario_repository.dart';
 export 'repositories/pedido_repository.dart';
 
 export 'services/database_service.dart';
+export 'services/generate_excel.dart';
 
 export 'usecases/usuario_usecase.dart';
 export 'usecases/pedido_usecase.dart';
