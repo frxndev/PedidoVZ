@@ -12,49 +12,37 @@ class PedidoNotifier extends StateNotifier<List<Pedido>> {
 
   Future<void> create(Pedido pedido) async {
     final createdPedido = await _repository.create(pedido);
-    if (createdPedido != null) {
-      state = [...state, createdPedido];
-    }
+    state = [...state, createdPedido];
   }
 
   Future<void> update(Pedido pedido) async {
     final updatedPedido = await _repository.update(pedido);
-    if (updatedPedido != null) {
-      state = [
-        for (final pedido in state)
-          if (pedido.idPedido == updatedPedido.idPedido)
-            updatedPedido
-          else
-            pedido
-      ];
-    }
+    state = [
+      for (final pedido in state)
+        if (pedido.idPedido == updatedPedido.idPedido) updatedPedido else pedido
+    ];
   }
 
   Future<void> cancel(int idPedido) async {
     final canceledPedido = await _repository.cancel(idPedido);
-    if (canceledPedido != null) {
-      // Actualizar el estado del pedido con el nuevo pedido cancelado
-      state = [
-        for (final pedido in state)
-          if (pedido.idPedido == canceledPedido.idPedido)
-            canceledPedido
-          else
-            pedido
-      ];
-    }
+    state = [
+      for (final pedido in state)
+        if (pedido.idPedido == canceledPedido.idPedido)
+          canceledPedido
+        else
+          pedido
+    ];
   }
 
   Future<void> entregrado(int idPedido) async {
     final deliveredPedido = await _repository.entregrado(idPedido);
-    if (deliveredPedido != null) {
-      state = [
-        for (final pedido in state)
-          if (pedido.idPedido == deliveredPedido.idPedido)
-            deliveredPedido
-          else
-            pedido
-      ];
-    }
+    state = [
+      for (final pedido in state)
+        if (pedido.idPedido == deliveredPedido.idPedido)
+          deliveredPedido
+        else
+          pedido
+    ];
   }
 
   // Search filter

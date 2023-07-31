@@ -18,7 +18,6 @@ class PedidoRepository {
       final result = await conn.execute(
         'SELECT * FROM pedidos WHERE idPedido = LAST_INSERT_ID()',
       );
-      print(result.rows.first.assoc());
       return Pedido.fromMap(result.rows.first.assoc());
     } finally {
       await DatabaseService().closeConnection();

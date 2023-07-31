@@ -23,7 +23,6 @@ class UpdatePedidoModal extends ConsumerStatefulWidget {
 class UpdatePedidoModalState extends ConsumerState<UpdatePedidoModal> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.only(top: 32, bottom: 18, left: 18, right: 18),
       child: LoForm<String>(

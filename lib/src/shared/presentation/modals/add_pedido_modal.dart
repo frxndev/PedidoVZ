@@ -18,7 +18,6 @@ class AddPedidoModal extends ConsumerStatefulWidget {
 class AddPedidoModalState extends ConsumerState<AddPedidoModal> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.only(top: 32, bottom: 18, left: 18, right: 18),
       child: LoForm<String>(
@@ -40,6 +39,7 @@ class AddPedidoModalState extends ConsumerState<AddPedidoModal> {
 
           ref.read(pedidoNotifierProvider.notifier).create(pedido);
           context.pop(context);
+          return null;
         },
         builder: (form) {
           return Column(
