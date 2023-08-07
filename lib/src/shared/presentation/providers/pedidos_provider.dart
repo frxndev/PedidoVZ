@@ -51,47 +51,6 @@ class PedidoNotifier extends StateNotifier<List<Pedido>> {
   }
 }
 
-/*class PedidoNotifier extends StateNotifier<List<Pedido>> {
-  final PedidoRepository _repository;
-
-  PedidoNotifier(this._repository) : super([]);
-
-  Future<void> getAll() async {
-    state = await _repository.getAll();
-  }
-
-  Future<void> get(int pedidoId) async {
-    state = [await _repository.get(pedidoId)];
-  }
-
-  Future<void> create(Pedido pedido) async {
-    final createdPedido = await _repository.create(pedido);
-
-    state = [...state, createdPedido];
-  }
-
-  Future<void> update(Pedido pedido) async {
-    // Actualiza el pedido en la base de datos
-    await _repository.update(pedido);
-
-    // Luego de completar la actualización en la base de datos,
-    // obten los datos actualizados y actualiza el estado local
-    await getAll();
-  }
-
-  Future<void> cancel(int idPedido) async {
-    await _repository.cancel(idPedido);
-
-    await getAll();
-  }
-
-  Future<void> entregrado(int idPedido) async {
-    await _repository.entregrado(idPedido);
-
-    await getAll();
-  }
-}*/
-
 final pedidoProvider = Provider((ref) => PedidoRepository());
 
 final pedidoNotifierProvider =
@@ -102,6 +61,6 @@ final pedidoNotifierProvider =
 final filteredPedidoProvider = Provider<List<Pedido>>((ref) {
   final allPedidos = ref.watch(pedidoNotifierProvider);
   final pedidosFiltrados =
-      allPedidos.where((pedido) => pedido.idEstado != 3).toList();
+      allPedidos.where((pedido) => pedido.idEstado == 1).toList();
   return pedidosFiltrados;
 });

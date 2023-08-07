@@ -106,6 +106,18 @@ class PedidoRepository {
     }
   }
 
+  Future<Pedido> getLastOrder() async {
+    final conn = await DatabaseService().getConnection();
+    try {
+      final result = await conn.execute(
+        'SELECT * FROM pedidos WHERE idEstado != 3 ORDER BY createAt DESC LIMIT 1',
+      );
+      return Pedido.fromMap(result.rows.first.assoc());
+    } finally {
+      await DatabaseService().closeConnection();
+    }
+  }
+
   Future<List<Pedido>> getAll() async {
     final conn = await DatabaseService().getConnection();
     try {
