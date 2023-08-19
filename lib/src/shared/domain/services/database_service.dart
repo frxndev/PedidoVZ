@@ -1,4 +1,5 @@
 import 'package:mysql_client/mysql_client.dart';
+import 'package:pedidosvz/src/shared/domain/services/load_config.dart';
 
 class DatabaseService {
   static final DatabaseService _instance = DatabaseService._internal();
@@ -11,13 +12,15 @@ class DatabaseService {
   DatabaseService._internal();
 
   Future<MySQLConnection> getConnection() async {
+    final config = await loadConfig();
+
     if (_connection == null) {
       _connection = await MySQLConnection.createConnection(
-        host: "127.0.0.1",
-        port: 3306,
-        userName: "pedidosvz",
-        password: "virtual123",
-        databaseName: "pedidosvz",
+        host: config['host'],
+        port: config['port'],
+        userName: config['userName'],
+        password: config['password'],
+        databaseName: config['databaseName'],
       );
       await _connection?.connect();
     }
