@@ -59,6 +59,7 @@ dev_dependencies:
 
 msix_config:
   display_name: Pedidos VZ
+  publisher: CN=FrannDev, O=Frann Dev... # required
   publisher_display_name: Francisco Huchin
   identity_name: frann.dev.pedidosvz
   msix_version: 1.0.0.0
