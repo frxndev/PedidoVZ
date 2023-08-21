@@ -26,14 +26,12 @@ class OrdersPage extends ConsumerWidget {
                     return Dialog(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
-                        child: SingleChildScrollView(
-                          child: Container(
-                            color: Colors.white,
-                            height: size.height * 0.6,
-                            width: size.width * 0.4,
-                            padding: const EdgeInsets.all(8),
-                            child: const AddPedidoModal(),
-                          ),
+                        child: Container(
+                          color: Colors.white,
+                          height: size.height * 0.9,
+                          width: size.width * 0.4,
+                          padding: const EdgeInsets.all(8),
+                          child: const AddPedidoModal(),
                         ),
                       ),
                     );

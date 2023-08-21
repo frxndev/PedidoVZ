@@ -18,7 +18,7 @@ class PedidoModalSheet extends ConsumerWidget {
     PedidoRepository pedidoRepository = PedidoRepository();
     Size size = MediaQuery.of(context).size;
     return SizedBox(
-      height: size.height * 0.40,
+      height: size.height * 0.60,
       child: FractionallySizedBox(
         heightFactor:
             0.7, // Ajusta la altura de la hoja modal según tus necesidades
@@ -46,7 +46,7 @@ class PedidoModalSheet extends ConsumerWidget {
                           child: SingleChildScrollView(
                             child: Container(
                               color: Colors.white,
-                              height: size.height * 0.6,
+                              height: size.height * 0.9,
                               width: size.width * 0.4,
                               padding: const EdgeInsets.all(8),
                               child: UpdatePedidoModal(pedido: pedido),

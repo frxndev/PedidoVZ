@@ -226,6 +226,11 @@ class HomePage extends ConsumerWidget {
                             ],
                           ),
                         );
+                      }
+                      if (!snapshot.hasData) {
+                        return const Center(
+                          child: Text('No hay pedidos'),
+                        );
                       } else {
                         return const Center(
                           child: CircularProgressIndicator(),
