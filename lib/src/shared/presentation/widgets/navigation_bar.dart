@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pedidosvz/src/shared/config/app_icons.dart';
 import 'package:pedidosvz/src/shared/presentation/providers/providers.dart';
 
 class NavigationBarWidget extends ConsumerStatefulWidget {
@@ -20,8 +18,6 @@ class NavigationBarWidgetState extends ConsumerState<NavigationBarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = ref.watch(isDarkModeProvider);
-
     return NavigationRail(
       selectedIndex: _selectedIndex,
       onDestinationSelected: changeDestination,

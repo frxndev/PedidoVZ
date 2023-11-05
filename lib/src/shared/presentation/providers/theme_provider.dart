@@ -4,7 +4,7 @@ import 'package:pedidosvz/src/shared/config/shared_preferences.dart';
 final isDarkModeProvider = StateProvider<bool>((ref) {
   final asyncValue = ref.watch(isDarkModeAsyncProvider);
   return asyncValue.when(
-    data: (value) => value ?? false,
+    data: (value) => value,
     loading: () =>
         false, // Puedes establecer un valor por defecto mientras carga
     error: (_, __) => false, // Manejar errores si ocurren
