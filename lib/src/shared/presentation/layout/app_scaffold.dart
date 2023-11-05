@@ -22,11 +22,9 @@ class _AppScaffoldState extends State<AppScaffold> {
               child: Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.white, // Color del fondo del contenedor
-                  border: Border.all(
-                    color: Colors.black12, // Color del contorno
-                    width: 2.0, // Grosor del contorno
-                  ),
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onSecondary, // Color del fondo del contenedor
                   borderRadius:
                       BorderRadius.circular(10.0), // Radio de los bordes
                 ),

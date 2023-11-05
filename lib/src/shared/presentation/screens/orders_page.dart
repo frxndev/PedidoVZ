@@ -27,7 +27,6 @@ class OrdersPage extends ConsumerWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Container(
-                          color: Colors.white,
                           height: size.height * 0.9,
                           width: size.width * 0.4,
                           padding: const EdgeInsets.all(8),
@@ -51,36 +50,52 @@ class OrdersPage extends ConsumerWidget {
             ),
             const Spacer(),
             SearchBar(
-              hintText: "Buscar pedido",
-              width: size.width * 0.2,
-              onSearchCallback: (value) =>
-                  ref.read(pedidoNotifierProvider.notifier).search(value),
+              onSubmitted: (value) => ref
+                  .read(pedidoNotifierProvider.notifier)
+                  .search(value.trim()),
+              elevation: MaterialStateProperty.all(1),
+              padding: const MaterialStatePropertyAll<EdgeInsets>(
+                  EdgeInsets.symmetric(horizontal: 16.0)),
+              leading: const Icon(Icons.search),
+              hintText: 'Buscar pedido',
             ),
-            // Create search bar
           ],
         ),
         const SizedBox(height: 20),
         const Expanded(child: PedidosList()),
-        const SizedBox(height: 20),
         FloatingActionButton.extended(
           onPressed: () {
             showDialog(
               context: context,
               builder: (context) {
-                return ConfirmDialog(
-                  title: 'Generar Reporte',
-                  content: '¿Está seguro que desea generar el reporte?',
-                  onCancelCallback: () => context.pop(context),
-                  onConfirmCallback: () {
-                    _onGenerateExcelButtonPressed(ref, context);
-                    context.pop(context);
-                  },
+                return AlertDialog(
+                  title: const Text('Generar Reporte'),
+                  content:
+                      const Text('¿Está seguro que desea generar el reporte?'),
+                  actions: <Widget>[
+                    FloatingActionButton(
+                      onPressed: () =>
+                          context.pop(context), // Closes the dialog
+                      child: const Text('No'),
+                    ),
+                    FloatingActionButton(
+                      onPressed: () {
+                        _onGenerateExcelButtonPressed(ref, context);
+                        context.pop(context);
+                      },
+                      backgroundColor:
+                          Theme.of(context).colorScheme.errorContainer,
+                      child: const Text('Si'),
+                    ),
+                  ],
                 );
               },
             );
           },
           label: const Text('Generar Reporte'),
+          elevation: 1,
         ),
+        const SizedBox(height: 20),
       ],
     );
   }
