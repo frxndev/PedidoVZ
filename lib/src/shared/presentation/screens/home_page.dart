@@ -158,8 +158,16 @@ class HomePage extends ConsumerWidget {
                           padding: const EdgeInsets.all(20),
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: const Color(0xfff7f7f7),
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondaryContainer, // Color del fondo del contenedor
                             borderRadius: BorderRadius.circular(16),
+                            border: Border.all(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondaryContainer
+                                  .withOpacity(0.04),
+                            ),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

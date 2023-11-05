@@ -6,7 +6,6 @@ import 'package:pedidosvz/src/shared/config/config.dart';
 import 'package:pedidosvz/src/shared/domain/domain.dart';
 import 'package:pedidosvz/src/shared/presentation/modals/modals.dart';
 import 'package:pedidosvz/src/shared/presentation/providers/providers.dart';
-import 'package:pedidosvz/src/shared/presentation/widgets/widgets.dart';
 
 class PedidoModalSheet extends ConsumerWidget {
   const PedidoModalSheet(this.pedido, {super.key});
@@ -45,7 +44,6 @@ class PedidoModalSheet extends ConsumerWidget {
                           borderRadius: BorderRadius.circular(8),
                           child: SingleChildScrollView(
                             child: Container(
-                              color: Colors.white,
                               height: size.height * 0.9,
                               width: size.width * 0.4,
                               padding: const EdgeInsets.all(8),
@@ -77,18 +75,29 @@ class PedidoModalSheet extends ConsumerWidget {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return ConfirmDialog(
-                          title: 'Pedido entregado',
-                          content:
-                              '¿Estás seguro de marcar el pedido como entregado?',
-                          onCancelCallback: () => context.pop(context),
-                          onConfirmCallback: () {
-                            ref
-                                .read(pedidoNotifierProvider.notifier)
-                                .entregrado(pedido.idPedido!);
-                            context.pop(context);
-                            context.pop(context);
-                          },
+                        return AlertDialog(
+                          title: const Text('Pedido entregado'),
+                          content: const Text(
+                              '¿Estás seguro de marcar el pedido como entregado?'),
+                          actions: <Widget>[
+                            FloatingActionButton(
+                              onPressed: () =>
+                                  context.pop(context), // Closes the dialog
+                              child: const Text('No'),
+                            ),
+                            FloatingActionButton(
+                              onPressed: () {
+                                ref
+                                    .read(pedidoNotifierProvider.notifier)
+                                    .entregrado(pedido.idPedido!);
+                                context.pop(context);
+                                context.pop(context);
+                              },
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.errorContainer,
+                              child: const Text('Si'),
+                            ),
+                          ],
                         );
                       },
                     );
@@ -101,18 +110,30 @@ class PedidoModalSheet extends ConsumerWidget {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return ConfirmDialog(
-                        title: 'Cancelar pedido de ${pedido.nombreCliente}',
-                        content:
-                            'Esta acción no se puede deshacer, ¿Estás seguro de cancelar el pedido? ',
-                        onCancelCallback: () => context.pop(context),
-                        onConfirmCallback: () {
-                          ref
-                              .read(pedidoNotifierProvider.notifier)
-                              .cancel(pedido.idPedido!);
-                          context.pop(context);
-                          context.pop(context);
-                        },
+                      return AlertDialog(
+                        title:
+                            Text('Cancelar pedido de ${pedido.nombreCliente}'),
+                        content: const Text(
+                            'Esta acción no se puede deshacer, ¿Estás seguro de cancelar el pedido? '),
+                        actions: <Widget>[
+                          FloatingActionButton(
+                            onPressed: () =>
+                                context.pop(context), // Closes the dialog
+                            child: const Text('No'),
+                          ),
+                          FloatingActionButton(
+                            onPressed: () {
+                              ref
+                                  .read(pedidoNotifierProvider.notifier)
+                                  .cancel(pedido.idPedido!);
+                              context.pop(context);
+                              context.pop(context);
+                            },
+                            backgroundColor:
+                                Theme.of(context).colorScheme.errorContainer,
+                            child: const Text('Si'),
+                          ),
+                        ],
                       );
                     },
                   );

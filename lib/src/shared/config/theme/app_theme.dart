@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // const seedColor = Color.fromARGB(255, 7, 80, 59);
-const seedColor = Colors.orange;
+const seedColor = Colors.blue;
 
 class AppTheme {
   final bool isDarkmode;

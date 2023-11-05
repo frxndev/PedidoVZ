@@ -19,12 +19,14 @@ class PedidoListTile extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.only(bottom: 10.0),
       decoration: BoxDecoration(
-        color: Colors.white, // Color del fondo del contenedor
+        color: Theme.of(context).colorScheme.secondaryContainer,
         border: Border.all(
-          color: Colors.black12, // Color del contorno
-          width: 2.0, // Grosor del contorno
+          color: Theme.of(context)
+              .colorScheme
+              .onSecondaryContainer
+              .withOpacity(0.04),
         ),
-        borderRadius: BorderRadius.circular(10.0), // Radio de los bordes
+        borderRadius: BorderRadius.circular(16),
       ),
       child: ListTile(
         mouseCursor: pedido.idEstado == 3 || pedido.idEstado == 2
